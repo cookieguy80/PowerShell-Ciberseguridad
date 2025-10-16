@@ -1,0 +1,5 @@
+$fecha = Get-Date -Format "dd_MM_yyyy"
+
+$archivo = "servicios_$fecha.txt"
+
+Get-Service | Out-File $archivo
