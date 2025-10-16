@@ -1,0 +1,7 @@
+$fecha = Get-Date -Format "dd_MM_yyyy"
+
+$archivoEntrada = "servicios_$fecha.txt"
+$archivoSalida = "servicios_detenidos_$fecha.txt"
+
+Get-Content $archivoEntrada | Where-Object {$_ -match "Stopped"} | Out-File $archivoSalida
+
