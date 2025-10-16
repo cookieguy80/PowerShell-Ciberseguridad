@@ -1,0 +1,7 @@
+$fecha = Get-Date -Format "yyyyMMdd_HHmmss"
+$archivo = "Procesos_Filtrados_$fecha.txt"
+
+Get-Process |
+    Where-Object { $_.WorkingSet64 -gt 100MB } |
+    Select-Object Name, Id, @{Name="Memoria(MB)";Expression={[math]::Round($_.WorkingSet64/1MB,2)}} |
+    Out-File $archivo -Encoding UTF8
